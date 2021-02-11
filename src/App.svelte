@@ -1,7 +1,7 @@
 <script lang="ts">
-  import TodoList from './components/TodoList.svelte'
   import AddTodoForm from './components/AddTodoForm.svelte'
-  import type { Todo } from './entities'
+  import TodoList from './components/TodoList.svelte'
+  import type { Todo, TodoFilter } from './entities'
 
   let todos: Todo[] = JSON.parse(localStorage.getItem('todos') || '[]')
 
@@ -11,6 +11,7 @@
 <main>
   <div class="container">
     <h1>Todos</h1>
+
     <AddTodoForm bind:todos />
     <TodoList bind:todos />
   </div>

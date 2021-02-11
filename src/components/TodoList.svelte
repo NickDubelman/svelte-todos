@@ -1,8 +1,23 @@
 <script lang="ts">
-  import type { Todo } from '../entities'
+  import type { Todo, TodoFilter } from '../entities'
+  import TodoFilters from './TodoFilters.svelte'
 
   export let todos: Todo[]
-  $: orderedTodos = [...todos].reverse()
+
+  let filterValue: TodoFilter = 'all'
+
+  $: filteredTodos = todos.filter(todo => {
+    switch (filterValue) {
+      case 'all':
+        return true
+      case 'completed':
+        return todo.completed
+      case 'incomplete':
+        return !todo.completed
+    }
+  })
+
+  $: orderedTodos = filteredTodos.reverse()
 
   $: completedTodos = todos.filter(t => t.completed)
   $: numIncomplete = todos.length - completedTodos.length
@@ -11,6 +26,8 @@
     todos = todos.filter(t => !t.completed)
   }
 </script>
+
+<TodoFilters bind:filterValue />
 
 <ul>
   {#each orderedTodos as todo}
