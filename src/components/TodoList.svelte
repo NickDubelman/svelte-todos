@@ -38,12 +38,14 @@
   {/each}
 </ul>
 
-{#if numIncomplete > 0}
-  <div class="num-incomplete">
+<div class="num-incomplete">
+  {#if numIncomplete > 0}
     {numIncomplete}
     {numIncomplete === 1 ? 'todo' : 'todos'} to complete
-  </div>
-{/if}
+  {:else}
+    All todos are completed!
+  {/if}
+</div>
 
 {#if completedTodos.length > 0}
   <button on:click={clearCompleted}>Clear completed</button>
