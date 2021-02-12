@@ -42,7 +42,7 @@
   {#if numIncomplete > 0}
     {numIncomplete}
     {numIncomplete === 1 ? 'todo' : 'todos'} to complete
-  {:else}
+  {:else if todos.length > 0}
     All todos are completed!
   {/if}
 </div>
